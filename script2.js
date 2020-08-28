@@ -427,6 +427,29 @@ var stopStreamingIn = function (room, stream, ok_cb, err_cb) {
     send('DELETE', '/rooms/' + room + '/streaming-ins/' + stream, undefined, ok_cb, err_cb);
 };
 
+var startStreamingInSRT = function (room, url, ok_cb, err_cb) {
+    var latency = parseInt($('#srtlatency').val());
+    var timeout = parseInt($('#timeout').val());
+    var mode = $('#srtmode').val();
+    var options = {
+        url: url,
+        media: {
+            audio: 'auto',
+            video: true
+        },
+        transport: {
+            mode: mode,
+            latency: latency,
+        }
+    };
+    send('POST', '/rooms/' + room + '/streaming-ins-srt', options, ok_cb, err_cb);
+};
+
+var stopStreamingInSRT = function (room, stream, ok_cb, err_cb) {
+    send('DELETE', '/rooms/' + room + '/streaming-ins-srt/' + stream, undefined, ok_cb, err_cb);
+};
+
+
 var listRecordings = function (room, ok_cb, err_cb) {
     send('GET', '/rooms/' + room + '/recordings/', undefined, ok_cb, err_cb);
 };
@@ -964,6 +987,30 @@ function restStopStreamingIn() {
         forwardStreamId
     } = getRestfulParmas();
     stopStreamingIn(roomId, forwardStreamId, (resp) => {
+        console.log('stop rtsp in success: ', resp);
+    }, err => {
+        console.log('stop rtsp in failed: ', err);
+    })
+}
+
+function restStartStreamingInSRT() {
+    let {
+        roomId,
+        rtspUrl
+    } = getRestfulParmas();
+    startStreamingInSRT(roomId, rtspUrl, (resp) => {
+        console.log('start rtsp in success: ', resp);
+    }, err => {
+        console.log('start rtsp in failed: ', err);
+    })
+}
+
+function restStopStreamingInSRT() {
+    let {
+        roomId,
+        forwardStreamId
+    } = getRestfulParmas();
+    stopStreamingInSRT(roomId, forwardStreamId, (resp) => {
         console.log('stop rtsp in success: ', resp);
     }, err => {
         console.log('stop rtsp in failed: ', err);
