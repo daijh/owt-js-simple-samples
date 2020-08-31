@@ -429,7 +429,6 @@ var stopStreamingIn = function (room, stream, ok_cb, err_cb) {
 
 var startStreamingInSRT = function (room, url, ok_cb, err_cb) {
     var latency = parseInt($('#srtlatency').val());
-    var timeout = parseInt($('#timeout').val());
     var mode = $('#srtmode').val();
     var options = {
         url: url,
