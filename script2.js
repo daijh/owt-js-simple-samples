@@ -1988,7 +1988,8 @@ function _publish(localStream, audioCodec, videoCodec, videoMaxBitrate, audioMax
     if (audioCodec.name || audioMaxBitrate) {
         audio = [{
             codec: audioCodec,
-            maxBitrate: parseInt(audioMaxBitrate),
+            maxAverageBitrate: parseInt(audioMaxBitrate),
+	    stereo: true
         }]
     }
     if (videoCodec.name || videoMaxBitrate) {
