@@ -372,6 +372,81 @@
                     <h2></h2>
 
                     <div class="testarea2">
+			                        <h3>publish</h3>
+                        <div class="options">
+                            <select id='localstreamid' class="fillparent">
+                                <option value="">local stream</option>
+                            </select>
+                        </div>
+                <div class="options">
+                            <select class="fillparent" id="simulcast">
+                                 <option value="">simulcast</option>
+                                 <option value="true">true</option>
+                                 <option value="false">false</option>
+                            </select>
+                        </div>
+                        <div class="options">
+                            <select class="fillparent" id="videocodec">
+                                <option value="">video codec</option>
+                                <option value="vp8">vp8</option>
+                                <option value="vp9">vp9</option>
+                                <option value="h264CB">h264</option>
+                                <option value="h265">h265</option>
+                                <option value="%^UJH">invalid</option>
+                            </select>
+                        </div>
+                        <div class="options">
+                            <select class="fillparent" id="audiocodec">
+                                <option value="">audio codec</option>
+                                <option value="pcmu">pcmu</option>
+                                <option value="opus">opus</option>
+                                <option value="pcma">pcma</option>
+                                <option value="aac">aac</option>
+                                <option value="g722-1">g722-1</option>
+                                <option value="g722-2">g722-2</option>
+                                <option value="ilbc">ilbc</option>
+                                <option value="isac16">isac16</option>
+                                <option value="isac32">isac32</option>
+                                <option value="ac3">ac3</option>
+                                <option value="nellymoser">nellymoser</option>
+                                <option value="%^UJH">invalid</option>
+                            </select>
+                        </div>
+                         <div class="options">
+                            <select class="fillparent" id="videoCodecpub">
+                                <option value="">videoCodecpub</option>
+                                <option value='VP8'>vp8</option>
+                                <option value='VP9'>vp9</option>
+                                <option value='H264'>h264</option>
+                                <option value="%^UJH">invalid</option>
+                            </select>
+                          </div>
+                         <div class="options">
+                            <select class="fillparent" id="simulcastAudio">
+                                <option value="">simulcastAudio</option>
+                                <option value='true'>true</option>
+                                <option value='false'>false</option>
+                                <option value="%^UJH">invalid</option>
+                            </select>
+                         </div>
+                          <div class="options">
+                            <select class="fillparent" id="scaleResolutionDownByObject">
+                                <option value="">scaleResolutionDownByObject</option>
+                                <option value="1.0">1.0</option>
+                                <option value="2.0">2.0</option>
+                                <option value="4.0">4.0</option>
+                                <option value="%^UJH">invalid</option>
+                            </select>
+                        </div>
+
+                        <ul>
+                            <li><label class='labelinput'>vMB: <input type='text' id='videomaxbitrate' /></label></li>
+                            <li><label class='labelinput'>aMB: <input type='text' id='audiomaxbitrate' /></label></li>
+                            <li><a href="javascript:void(0)" onclick="publish()">publish</a></li>
+                        </ul>
+                    </div>
+                    <div class="testarea1">
+
                         <h3>Streaming</h3>
                         <select class="fillparent" id="audiofromlist">
                             <option value="">audio from</option>
