@@ -3024,9 +3024,10 @@ window.onload = function () {
             codec: {
                 name: audioCodec
             },
-            maxBitrate: audioMaxBitrate,
+//            maxBitrate: audioMaxBitrate,
+              maxAverageBitrate: audioMaxBitrate,  //这里代表128Kbps, 可以根据需要调整
+	      stereo: true
         }],
-       
        video: [{
             codec: {
                 name: videoCodec
@@ -3037,6 +3038,7 @@ window.onload = function () {
     }
 }
     
+ console.log("11111111111111111222222222222222",audioMaxBitrate)
 
     isJoin && createToken(defaultRoomId, 'testuser', role, (token) => {
         client.join(token)
