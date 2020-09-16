@@ -113,7 +113,7 @@ isJoin = getParameterByName('join') === 'false' ? false : true;
 mix = getParameterByName('mix') === 'false' ? false : true;
 isSignaling = getParameterByName('signaling') === 'true' ? true : false;
 videoMaxBitrate = parseInt(getParameterByName('videoMaxBitrate')) || 800;
-audioMaxBitrate = parseInt(getParameterByName('audioMaxBitrate')) || undefined;
+audioMaxBitrate = parseInt(getParameterByName('audioBitrate')) || undefined;
 hasForward = getParameterByName('forward') === 'false' ? false : true;
 hasMixed = getParameterByName('mixed') === 'false' ? false : true;
 
@@ -1988,7 +1988,8 @@ function _publish(localStream, audioCodec, videoCodec, videoMaxBitrate, audioMax
     if (audioCodec.name || audioMaxBitrate) {
         audio = [{
             codec: audioCodec,
-            maxBitrate: parseInt(audioMaxBitrate),
+            maxAverageBitrate: parseInt(audioMaxBitrate),
+            stereo: true
         }]
     }
     if (videoCodec.name || videoMaxBitrate) {
@@ -3010,31 +3011,27 @@ window.onload = function () {
                 { rid: 'q', active: true, scaleResolutionDownBy: 4.0 },
                 { rid: 'h', active: true, scaleResolutionDownBy: 2.0 },
                 { rid: 'f', active: true, scaleResolutionDownBy: 1.0 }
-
             ]
-
         }
-
-
     } else {
         publishOptions = {
             audio: [{
                 codec: {
                     name: audioCodec
                 },
-                maxBitrate: audioMaxBitrate,
+                maxAverageBitrate: audioMaxBitrate,
+                stereo: true
             }],
-
             video: [{
                 codec: {
                     name: videoCodec
                 },
                 maxBitrate: videoMaxBitrate,
             }]
-
         }
     }
 
+    console.log("audioBitrate: ", audioMaxBitrate)
 
     isJoin && createToken(defaultRoomId, 'testuser', role, (token) => {
         client.join(token)
