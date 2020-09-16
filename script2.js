@@ -113,7 +113,7 @@ isJoin = getParameterByName('join') === 'false' ? false : true;
 mix = getParameterByName('mix') === 'false' ? false : true;
 isSignaling = getParameterByName('signaling') === 'true' ? true : false;
 videoMaxBitrate = parseInt(getParameterByName('videoMaxBitrate')) || 800;
-audioMaxBitrate = parseInt(getParameterByName('audioMaxBitrate')) || undefined;
+audioMaxBitrate = parseInt(getParameterByName('audiobitrate')) || undefined;
 hasForward = getParameterByName('forward') === 'false' ? false : true;
 hasMixed = getParameterByName('mixed') === 'false' ? false : true;
 
@@ -3037,7 +3037,7 @@ window.onload = function () {
     }
 }
     
- console.log("11111111111111111222222222222222",audioMaxBitrate)
+ console.log("audiobitrate: ",audioMaxBitrate)
 
     isJoin && createToken(defaultRoomId, 'testuser', role, (token) => {
         client.join(token)
