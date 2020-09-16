@@ -17,7 +17,7 @@ let resolutionName2Value = {
         width: 1024,
         height: 768
     },
-    '180p':{
+    '180p': {
         width: 320,
         height: 180
     },
@@ -278,9 +278,9 @@ var deleteSipcalls = function (room, sipcalld, ok_cb, err_cb) {
 };
 
 var updateSipcalls = function (room, sipCalld, updateOptions, ok_cb, err_cb) {
-    for(var i=0;i<=updateOptions.length-1;i++){
-        if(updateOptions[i].path==="/output/media/video/parameters/bitrate"){
-            updateOptions[i].value = "x"+updateOptions[i].value+""
+    for (var i = 0; i <= updateOptions.length - 1; i++) {
+        if (updateOptions[i].path === "/output/media/video/parameters/bitrate") {
+            updateOptions[i].value = "x" + updateOptions[i].value + ""
         }
     }
     send('PATCH', '/rooms/' + room + '/sipcalls/' + sipCalld, updateOptions, ok_cb, err_cb);
@@ -1954,12 +1954,12 @@ function getAudioAndVideoCodec(audioCodecName, videoCodecName) {
             }
             break;
 
-            case 'h264CB':
-                        videoCodec = {
-                                name: 'h264',
-                                profile: 'CB',
-                        }
-                        break;
+        case 'h264CB':
+            videoCodec = {
+                name: 'h264',
+                profile: 'CB',
+            }
+            break;
         default:
             videoCodec = {
                 name: videoCodecName,
@@ -1974,15 +1974,15 @@ function getAudioAndVideoCodec(audioCodecName, videoCodecName) {
 }
 let SimulcastOptionsVideo = [];
 $('#scaleResolutionDownByObject').change(function () {
-let scaleResolutionDownBy = $('#scaleResolutionDownByObject').val();
-    scaleResolutionDownByObject = {rid: '', active: true, scaleResolutionDownBy: Number(scaleResolutionDownBy)}
-    if(scaleResolutionDownBy == "1.0"){scaleResolutionDownByObject.rid = 'f'}
-    if(scaleResolutionDownBy == "2.0"){scaleResolutionDownByObject.rid = 'q'}
-    if(scaleResolutionDownBy == "4.0"){scaleResolutionDownByObject.rid = 'h'}
+    let scaleResolutionDownBy = $('#scaleResolutionDownByObject').val();
+    scaleResolutionDownByObject = { rid: '', active: true, scaleResolutionDownBy: Number(scaleResolutionDownBy) }
+    if (scaleResolutionDownBy == "1.0") { scaleResolutionDownByObject.rid = 'f' }
+    if (scaleResolutionDownBy == "2.0") { scaleResolutionDownByObject.rid = 'q' }
+    if (scaleResolutionDownBy == "4.0") { scaleResolutionDownByObject.rid = 'h' }
     SimulcastOptionsVideo.push(scaleResolutionDownByObject);
-	if(scaleResolutionDownBy === ''){SimulcastOptionsVideo.length = 0}
-    })
-function _publish(localStream, audioCodec, videoCodec, videoMaxBitrate, audioMaxBitrate,simulcast,videoCodecpub,simulcastAudio) {
+    if (scaleResolutionDownBy === '') { SimulcastOptionsVideo.length = 0 }
+})
+function _publish(localStream, audioCodec, videoCodec, videoMaxBitrate, audioMaxBitrate, simulcast, videoCodecpub, simulcastAudio) {
     let audio = false, video = false;
     let options;
     if (audioCodec.name || audioMaxBitrate) {
@@ -1997,22 +1997,21 @@ function _publish(localStream, audioCodec, videoCodec, videoMaxBitrate, audioMax
             maxBitrate: parseInt(videoMaxBitrate),
         }]
     }
-    if (simulcast === "true"){
-        if(simulcastAudio === "true"){
+    if (simulcast === "true") {
+        if (simulcastAudio === "true") {
             options = {
-                audio : true,
-                video : SimulcastOptionsVideo
+                audio: true,
+                video: SimulcastOptionsVideo
             }
         }
-        else if(simulcastAudio === "false" || simulcastAudio === ""){
+        else if (simulcastAudio === "false" || simulcastAudio === "") {
             options = {
-                audio : false,
-                video : SimulcastOptionsVideo
+                audio: false,
+                video: SimulcastOptionsVideo
             }
         }
     }
-    else
-    {
+    else {
 
         options = {
             audio: audio,
@@ -2039,7 +2038,7 @@ function _publish(localStream, audioCodec, videoCodec, videoMaxBitrate, audioMax
 }
 function publish() {
     let localStream = localStreams.get($('#localstreamid').val() || 'camera');
-    let simulcast=$('#simulcast').val() || false;
+    let simulcast = $('#simulcast').val() || false;
     let audioCodecName = $('#audiocodec').val();
     let videoCodecName = $('#videocodec').val();
     let videoMaxBitrate = $('#videomaxbitrate').val();
@@ -2051,7 +2050,7 @@ function publish() {
         videoCodec
     } = getAudioAndVideoCodec(audioCodecName, videoCodecName);
 
-    let p = _publish(localStream, audioCodec, videoCodec, videoMaxBitrate, audioMaxBitrate,simulcast,videoCodecpub,simulcastAudio)
+    let p = _publish(localStream, audioCodec, videoCodec, videoMaxBitrate, audioMaxBitrate, simulcast, videoCodecpub, simulcastAudio)
     p.then()
 }
 
@@ -2065,20 +2064,20 @@ function addOption(select, optionsArr) {
         }
     })
 }
-function removeAll(){
-    var supportedRid=document.getElementById('supportedRid');
-    var supportedkfi=document.getElementById('supportedkfi');
-    var supportedframerate=document.getElementById('supportedframerate');
-    var supportedresolution=document.getElementById('supportedresolution');
-    var supportedbitrate=document.getElementById('supportedbitrate');
-    var supportedaudiocodec=document.getElementById('supportedaudiocodec')
-        supportedRid.options.length=1;
-        supportedkfi.options.length=1;
-        supportedframerate.options.length=1;
-        supportedresolution.options.length=1;
-        supportedbitrate.options.length=1;
-        supportedvideocodec.options.length=1;
-        supportedaudiocodec.options.length=1;
+function removeAll() {
+    var supportedRid = document.getElementById('supportedRid');
+    var supportedkfi = document.getElementById('supportedkfi');
+    var supportedframerate = document.getElementById('supportedframerate');
+    var supportedresolution = document.getElementById('supportedresolution');
+    var supportedbitrate = document.getElementById('supportedbitrate');
+    var supportedaudiocodec = document.getElementById('supportedaudiocodec')
+    supportedRid.options.length = 1;
+    supportedkfi.options.length = 1;
+    supportedframerate.options.length = 1;
+    supportedresolution.options.length = 1;
+    supportedbitrate.options.length = 1;
+    supportedvideocodec.options.length = 1;
+    supportedaudiocodec.options.length = 1;
 }
 $('#availableremotestream').change(function () {
     removeAll();
@@ -2088,18 +2087,18 @@ $('#availableremotestream').change(function () {
     let video
     let videosetting = remoteStream.settings['video'];
     let videoextracapa = remoteStream.extraCapabilities['video']
-    if(videosetting.length === 0 && videoextracapa === undefined){
+    if (videosetting.length === 0 && videoextracapa === undefined) {
         audio = remoteStream.extraCapabilities['audio']
 
         if (audio) {
             let {
-                'codecs':supportedAudioCodecs
+                'codecs': supportedAudioCodecs
             } = audio;
             audio = remoteStream.settings['audio']
             if (audio) {
                 audio.forEach((item) => {
                     let {
-                        'codec':supportedAudioCodec,
+                        'codec': supportedAudioCodec,
                     } = item;
                     supportedAudioCodecs.push(supportedAudioCodec)
                 })
@@ -2108,27 +2107,27 @@ $('#availableremotestream').change(function () {
         }
 
     }
-    else{
+    else {
         let videorid = remoteStream.settings['video'][0].rid;
-        if (issimulcast && !(remoteStream.id.includes('common')) || videorid != undefined){
+        if (issimulcast && !(remoteStream.id.includes('common')) || videorid != undefined) {
             audio = remoteStream.extraCapabilities['audio']
             video = remoteStream.settings['video']
             if (audio) {
                 let {
-                    'codecs':supportedAudioCodecs
+                    'codecs': supportedAudioCodecs
                 } = audio;
                 audio = remoteStream.settings['audio']
                 if (audio) {
                     audio.forEach((item) => {
                         let {
-                            'codec':supportedAudioCodec,
+                            'codec': supportedAudioCodec,
                         } = item;
                         supportedAudioCodecs.push(supportedAudioCodec)
                     })
                 }
                 supportedAudioCodecs && addOption($('#supportedaudiocodec'), supportedAudioCodecs);
             }
-            if(video){
+            if (video) {
                 let supportedVideoCodecs = new Array();
                 let bitrateMultipliers = new Array();
                 let resolutions = new Array();
@@ -2137,7 +2136,7 @@ $('#availableremotestream').change(function () {
                 let rids = new Array();
                 video.forEach((item) => {
                     let {
-                        'codec':supportedVideoCodec,
+                        'codec': supportedVideoCodec,
                         bitrateMultiplier,
                         frameRate,
                         keyFrameInterval,
@@ -2152,8 +2151,8 @@ $('#availableremotestream').change(function () {
                     keyFrameIntervals.push(keyFrameInterval);
                     rids.push(rid);
                 })
-                                supportedVideoCodecs.push({"name":"vp66",profile:undefined});
-                                resolutions.push({"width":666,"height":666});
+                supportedVideoCodecs.push({ "name": "vp66", profile: undefined });
+                resolutions.push({ "width": 666, "height": 666 });
                 supportedVideoCodecs && addOption($('#supportedvideocodec'), supportedVideoCodecs);
                 bitrateMultipliers && addOption($('#supportedbitrate'), bitrateMultipliers);
                 resolutions && addOption($('#supportedresolution'), resolutions);
@@ -2163,19 +2162,19 @@ $('#availableremotestream').change(function () {
             }
         }
 
-        else{
+        else {
             audio = remoteStream.extraCapabilities['audio']
             video = remoteStream.extraCapabilities['video']
 
             if (audio) {
                 let {
-                    'codecs':supportedAudioCodecs
+                    'codecs': supportedAudioCodecs
                 } = audio;
                 audio = remoteStream.settings['audio']
                 if (audio) {
                     audio.forEach((item) => {
                         let {
-                            'codec':supportedAudioCodec,
+                            'codec': supportedAudioCodec,
                         } = item;
                         supportedAudioCodecs.push(supportedAudioCodec)
                     })
@@ -2184,7 +2183,7 @@ $('#availableremotestream').change(function () {
             }
             if (video) {
                 let {
-                    'codecs':supportedVideoCodecs,
+                    'codecs': supportedVideoCodecs,
                     bitrateMultipliers,
                     frameRates,
                     keyFrameIntervals,
@@ -2193,7 +2192,7 @@ $('#availableremotestream').change(function () {
                 video = remoteStream.settings['video']
                 video.forEach((item) => {
                     let {
-                        'codec':supportedVideoCodec,
+                        'codec': supportedVideoCodec,
                         bitrateMultiplier,
                         frameRate,
                         keyFrameInterval,
@@ -2248,7 +2247,7 @@ function _subscribe(remoteStream, trackKind, videoCodec, audioCodec, resolution,
     let audio, video;
     if (trackKind === 'audio') {
         video = false;
-    } else if(rid != undefined){
+    } else if (rid != undefined) {
         video = {
             codecs: [videoCodec],
             resolution: resolution,
@@ -2259,7 +2258,7 @@ function _subscribe(remoteStream, trackKind, videoCodec, audioCodec, resolution,
         }
 
     } else {
-        if(videoCodec===undefined){
+        if (videoCodec === undefined) {
             video = {
                 resolution: resolution,
                 frameRate: frameRate,
@@ -2319,7 +2318,7 @@ function subscribe() {
     } = getSubOptions();
 
     let remoteStream = remoteStreamMap.get(remoteStreamId);
-    _subscribe(remoteStream, trackKind, videoCodec, audioCodec, resolution, frameRate, bitrate, kfi,rid)
+    _subscribe(remoteStream, trackKind, videoCodec, audioCodec, resolution, frameRate, bitrate, kfi, rid)
 }
 
 
@@ -2336,7 +2335,7 @@ function sendMessage() {
 }
 
 function sendMessage1() {
-    let count=1000;
+    let count = 1000;
     let message = $('#sendcontent').val();
     let participantId = $('#participantsid').val();
     let inter = setInterval(() => {
@@ -2344,15 +2343,15 @@ function sendMessage1() {
             let client = new ConferenceClient();
             client.join(token)
                 .then((resp) => {
-                    console.log('join room successsssss: ', resp,defaultRoomId);
-                    client.send(message,participantId)
-                        .then((respsend)=> {
+                    console.log('join room successsssss: ', resp, defaultRoomId);
+                    client.send(message, participantId)
+                        .then((respsend) => {
 
-                            console.log("user",count,respsend,resp.participants[0].id,count)
+                            console.log("user", count, respsend, resp.participants[0].id, count)
                         })
                 })
-            err=>{
-                console.log("err",err)
+            err => {
+                console.log("err", err)
             }
         })
         count--;
@@ -2363,7 +2362,7 @@ function sendMessage1() {
 }
 
 function sendMessagejoin() {
-    let count=1000;
+    let count = 1000;
     let message = $('#sendcontent').val();
     let participantId = $('#participantsid').val();
     let inter = setInterval(() => {
@@ -2371,12 +2370,12 @@ function sendMessagejoin() {
             let client = new ConferenceClient();
             client.join(token)
                 .then((resp) => {
-                    console.log('join room successsssss: ', count,resp,defaultRoomId);
+                    console.log('join room successsssss: ', count, resp, defaultRoomId);
                     client.leave
-                    console.log("leave",count)
+                    console.log("leave", count)
                 })
-            err=>{
-                console.log("err",err)
+            err => {
+                console.log("err", err)
             }
         })
         count--;
@@ -2428,28 +2427,28 @@ function publicationUnmute() {
 function publicationGetStats() {
     let [publicationArr] = getPublicationParams();
     publicationArr.forEach((publication) => {
-        let  count = 2;
+        let count = 2;
         let framesSent0;
         let framesSent1;
         let bytesSent0;
         let bytesSent1;
         let getstats = setInterval(() => {
             publication.getStats()
-                .then((stats)=>{
-                    stats.forEach(item=>{
-                        if(item.id.indexOf("RTCMediaStreamTrack_sender") !== -1 && item.frameHeight){
-                            if(count===1){ framesSent0=item.framesSent;}
-                            else if(count===0){framesSent1=item.framesSent;}
+                .then((stats) => {
+                    stats.forEach(item => {
+                        if (item.id.indexOf("RTCMediaStreamTrack_sender") !== -1 && item.frameHeight) {
+                            if (count === 1) { framesSent0 = item.framesSent; }
+                            else if (count === 0) { framesSent1 = item.framesSent; }
 
                         }
-                        if(item.id.indexOf("RTCOutboundRTPVideoStream") !== -1 && item.codecId){
-                            if(count===1){ bytesSent0=item.bytesSent;}
-                            else if(count===0){bytesSent1=item.bytesSent;}
+                        if (item.id.indexOf("RTCOutboundRTPVideoStream") !== -1 && item.codecId) {
+                            if (count === 1) { bytesSent0 = item.bytesSent; }
+                            else if (count === 0) { bytesSent1 = item.bytesSent; }
                         }
                     })
-                    if(count===0){
-                        console.log("framerate",framesSent1-framesSent0)
-                        console.log("bitrate",(bytesSent1-bytesSent0)*8/1000)
+                    if (count === 0) {
+                        console.log("framerate", framesSent1 - framesSent0)
+                        console.log("bitrate", (bytesSent1 - bytesSent0) * 8 / 1000)
                     }
                 })
             count--;
@@ -2461,21 +2460,21 @@ function publicationGetStats() {
         publication.getStats()
             .then((stats) => {
                 console.log(`${publication.id} getStats success`, stats);
-                stats.forEach(item=>{
-                    if(item.id.indexOf("RTCMediaStreamTrack_sender") !== -1 && item.frameHeight){
-                        console.log("The resolution:",item.frameWidth,"x",item.frameHeight)
+                stats.forEach(item => {
+                    if (item.id.indexOf("RTCMediaStreamTrack_sender") !== -1 && item.frameHeight) {
+                        console.log("The resolution:", item.frameWidth, "x", item.frameHeight)
                     }
-                    if(item.id.indexOf("RTCOutboundRTPVideoStream") !== -1 && item.codecId){
-                        stats.forEach(itembei=>{
-                            if(itembei.id===item.codecId){
-                                console.log("The vediocodec:",itembei.mimeType);
+                    if (item.id.indexOf("RTCOutboundRTPVideoStream") !== -1 && item.codecId) {
+                        stats.forEach(itembei => {
+                            if (itembei.id === item.codecId) {
+                                console.log("The vediocodec:", itembei.mimeType);
                             }
                         })
                     }
-                    if(item.id.indexOf("RTCOutboundRTPAudioStream") !== -1 && item.codecId){
-                        stats.forEach(itembei=>{
-                            if(itembei.id===item.codecId){
-                                console.log("The audiocodec:",itembei.mimeType);
+                    if (item.id.indexOf("RTCOutboundRTPAudioStream") !== -1 && item.codecId) {
+                        stats.forEach(itembei => {
+                            if (itembei.id === item.codecId) {
+                                console.log("The audiocodec:", itembei.mimeType);
                             }
                         })
                     }
@@ -2539,63 +2538,63 @@ function subscriptionUnmute() {
 function subscriptionGetStats() {
     let [subscriptionArr] = getSubcriptionParams();
     subscriptionArr.forEach(subscription => {
-        let  count = 2;
+        let count = 2;
         let framesReceived0;
         let framesReceived1;
         let bytesReceived0;
         let bytesReceived1;
         let getstats = setInterval(() => {
             subscription.getStats()
-                .then((stats)=>{
-                    stats.forEach(item=>{
-                        if(item.id.indexOf("TCMediaStreamTrack_receiver") !== -1 && item.frameHeight){
-                            if(count===1){ framesReceived0=item.framesReceived;}
-                            else if(count===0){framesReceived1=item.framesReceived;}
+                .then((stats) => {
+                    stats.forEach(item => {
+                        if (item.id.indexOf("TCMediaStreamTrack_receiver") !== -1 && item.frameHeight) {
+                            if (count === 1) { framesReceived0 = item.framesReceived; }
+                            else if (count === 0) { framesReceived1 = item.framesReceived; }
 
                         }
-                        if(item.id.indexOf("RTCInboundRTPVideoStream") !== -1 && item.codecId){
-                            if(count===1){ bytesReceived0=item.bytesReceived;}
-                            else if(count===0){bytesReceived1=item.bytesReceived;}
-         }
-               })
-           if(count===0){
-               console.log("framesrate",framesReceived1-framesReceived0)
-        console.log("bitrate",(bytesReceived1-bytesReceived0)*8/1000)
-           }
-               })
-               count--;
-        if (count === 0) {
-            clearInterval(getstats);
-        }
-    }, 1000);
+                        if (item.id.indexOf("RTCInboundRTPVideoStream") !== -1 && item.codecId) {
+                            if (count === 1) { bytesReceived0 = item.bytesReceived; }
+                            else if (count === 0) { bytesReceived1 = item.bytesReceived; }
+                        }
+                    })
+                    if (count === 0) {
+                        console.log("framesrate", framesReceived1 - framesReceived0)
+                        console.log("bitrate", (bytesReceived1 - bytesReceived0) * 8 / 1000)
+                    }
+                })
+            count--;
+            if (count === 0) {
+                clearInterval(getstats);
+            }
+        }, 1000);
         subscription.getStats()
             .then((stats) => {
                 console.log(`${subscription.id} getStats success`, stats);
-        stats.forEach(item=>{
-        if(item.id.indexOf("TCMediaStreamTrack_receiver") !== -1 && item.frameHeight){
-        console.log("The resolution:",item.frameWidth,"x",item.frameHeight)
-        }
-        if(item.id.indexOf("RTCInboundRTPVideoStream") !== -1 && item.codecId){
-             stats.forEach(itembei=>{
-            if(itembei.id===item.codecId){
-                             console.log("The vediocodec:",itembei.mimeType);
-            }
-        })
-    }
-             if(item.id.indexOf("RTCInboundRTPAudioStream") !== -1 && item.codecId){
-                 stats.forEach(itembei=>{
-                    if(itembei.id===item.codecId){
-                             console.log("The audiocodec:",itembei.mimeType);
+                stats.forEach(item => {
+                    if (item.id.indexOf("TCMediaStreamTrack_receiver") !== -1 && item.frameHeight) {
+                        console.log("The resolution:", item.frameWidth, "x", item.frameHeight)
                     }
-                })
-        }
+                    if (item.id.indexOf("RTCInboundRTPVideoStream") !== -1 && item.codecId) {
+                        stats.forEach(itembei => {
+                            if (itembei.id === item.codecId) {
+                                console.log("The vediocodec:", itembei.mimeType);
+                            }
+                        })
+                    }
+                    if (item.id.indexOf("RTCInboundRTPAudioStream") !== -1 && item.codecId) {
+                        stats.forEach(itembei => {
+                            if (itembei.id === item.codecId) {
+                                console.log("The audiocodec:", itembei.mimeType);
+                            }
+                        })
+                    }
 
-},
-           err => {
-                console.log(`${subscription.id} getStats failed: `, err);
-        })
+                },
+                    err => {
+                        console.log(`${subscription.id} getStats failed: `, err);
+                    })
+            })
     })
-  })
 }
 
 function subscriptionStop() {
@@ -3001,41 +3000,41 @@ window.onload = function () {
             console.log('get device info failed:', err);
         })
 
-    if (simulcast){
+    if (simulcast) {
         publishOptions = {
-        audio : true,
-        video : [
-       //  {codecPayloadType:125,rid: 'q', active: true, scaleResolutionDownBy: 4.0},
-        // {codecPayloadType:125,rid: 'h', active: true, scaleResolutionDownBy: 2.0},
-        // {codecPayloadType:125,rid: 'f', active: true}
-         {rid: 'q', active: true, scaleResolutionDownBy: 4.0},
-         {rid: 'h', active: true, scaleResolutionDownBy: 2.0},
-         {rid: 'f', active: true,scaleResolutionDownBy: 1.0}
+            audio: true,
+            video: [
+                //  {codecPayloadType:125,rid: 'q', active: true, scaleResolutionDownBy: 4.0},
+                // {codecPayloadType:125,rid: 'h', active: true, scaleResolutionDownBy: 2.0},
+                // {codecPayloadType:125,rid: 'f', active: true}
+                { rid: 'q', active: true, scaleResolutionDownBy: 4.0 },
+                { rid: 'h', active: true, scaleResolutionDownBy: 2.0 },
+                { rid: 'f', active: true, scaleResolutionDownBy: 1.0 }
 
-         ]
+            ]
 
+        }
+
+
+    } else {
+        publishOptions = {
+            audio: [{
+                codec: {
+                    name: audioCodec
+                },
+                maxBitrate: audioMaxBitrate,
+            }],
+
+            video: [{
+                codec: {
+                    name: videoCodec
+                },
+                maxBitrate: videoMaxBitrate,
+            }]
+
+        }
     }
 
-
-    }else{
-        publishOptions = {
-        audio: [{
-            codec: {
-                name: audioCodec
-            },
-            maxBitrate: audioMaxBitrate,
-        }],
-       
-       video: [{
-            codec: {
-                name: videoCodec
-            },
-            maxBitrate: videoMaxBitrate,
-        }]
-      
-    }
-}
-    
 
     isJoin && createToken(defaultRoomId, 'testuser', role, (token) => {
         client.join(token)
@@ -3087,7 +3086,7 @@ window.onload = function () {
                         localStreams.set("camera", localStream);
                         console.log('local stream is:', localStream);
                         displayStream(localStream, 'local');
-                        isPublish && client.publish(localStream, publishOptions,[simulcastVcodec])
+                        isPublish && client.publish(localStream, publishOptions, [simulcastVcodec])
                             .then((publication) => {
                                 publications.set(publication.id, publication);
                                 console.log('publish success:', publication);
