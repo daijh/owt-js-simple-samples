@@ -3024,8 +3024,7 @@ window.onload = function () {
             codec: {
                 name: audioCodec
             },
-//            maxBitrate: audioMaxBitrate,
-              maxAverageBitrate: audioMaxBitrate,  //这里代表128Kbps, 可以根据需要调整
+              maxAverageBitrate: audioMaxBitrate, 
 	      stereo: true
         }],
        video: [{
