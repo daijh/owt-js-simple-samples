@@ -11,6 +11,22 @@ copy "index.html" and "script2.js" into "owt-server/dist/extras/basic_example/pu
 - Set publish local stream audio bitrate in kbps, only opus supported   
   Enter URL "https://owt-server-ip:3004/?audioBitrate=128"
 
+## Subscribe forward stream - opus stereo  
+```
+audio = {
+    codecs: [{name: "opus", channelCount: 2, clockRate: 48000}],
+    stereo: true,
+  }
+```
+### Subscribe sample
+- Select "remote stream" as forward.<br>
+Postfix "-common" id is mixed stream.<br>
+Non postfix "-common" id is forward stream.
+- Select "trace kind" as "audio-and-video", or "audio" for audio-only.
+- Select "audio codec" as "opus".
+- Leave all other as default.
+- Press "subscibe"
+
 ## Links
 - [Streaming out setup guide](https://github.com/daijh/owt-doc/blob/master/streaming_out_setup_guide.md)  
 - [SRT setup guide](https://github.com/daijh/owt-doc/blob/master/owt_srt_setup_guide.md)  

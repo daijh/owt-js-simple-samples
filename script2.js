@@ -2281,8 +2281,9 @@ function _subscribe(remoteStream, trackKind, videoCodec, audioCodec, resolution,
         audio = false;
     } else {
         audio = {
-            codecs: [audioCodec]
-        }
+            codecs: [audioCodec],
+            stereo: true
+        };
     }
     subOptions = {
         audio: audio,

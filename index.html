@@ -401,7 +401,7 @@
                             <li><a href="javascript:void(0)" onclick="restStartStreamingOut()">streamingOut start</a>
                             </li>
                             <li><a href="javascript:void(0)" onclick="restStopStreamingOut()">streamingOut stop</a></li>
-                            <p>Patches and issues welcome!</p>
+                            <h3>SRT Streaming Input</h3>
                             <li><label class='labelinput'>srturl: <input type='text' id='rtmpin'
                                         value="srt://10.239.158.38:20000" /></label>
                             </li>
@@ -412,6 +412,61 @@
                                     start</a></li>
                             <li><a href="javascript:void(0)" onclick="restStopStreamingInSRT()">streamingIn SRT stop</a>
                             </li>
+                        </ul>
+                    </div>
+
+                    <div class="testarea1">
+                        <h3>Subscribe</h3>
+                        <div class="options">
+                            <select class="fillparent" id="availableremotestream">
+                                <option value="">remote stream</option>
+                            </select>
+                        </div>
+                        <div class="options">
+                            <select class="fillparent" id="subscribetrackkind">
+                                <option value="">track kind</option>
+                                <option value="audio">audio</option>
+                                <option value="video">video</option>
+                                <option value="av">audio-and-video</option>
+                            </select>
+                        </div>
+                        <div class="options">
+                            <select class="fillparent" id="supportedaudiocodec">
+                                <option value="">audio codec</option>
+                            </select>
+                        </div>
+                        <div class="options">
+                            <select class="fillparent" id="supportedvideocodec">
+                                <option value="">video codec</option>
+                            </select>
+                        </div>
+                        <div class="options">
+                            <select class="fillparent" id="supportedbitrate">
+                                <option value="">bitrate</option>
+                            </select>
+                        </div>
+                        <div class="options">
+                            <select class="fillparent" id="supportedresolution">
+                                <option value="">resolution</option>
+                            </select>
+                        </div>
+                        <div class="options">
+                            <select class="fillparent" id="supportedframerate">
+                                <option value="">framerate</option>
+                            </select>
+                        </div>
+                        <div class="options">
+                            <select class="fillparent" id="supportedkfi">
+                                <option value="">keyFrameInterval</option>
+                            </select>
+                        </div>
+                        <div class="options">
+                            <select class="fillparent" id="supportedRid">
+                                <option value="">rid</option>
+                            </select>
+                        </div>
+                        <ul>
+                            <li><a href="javascript:void(0)" onclick="subscribe()">subscribe</a></li>
                         </ul>
                     </div>
 
