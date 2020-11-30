@@ -428,7 +428,7 @@ var stopStreamingIn = function (room, stream, ok_cb, err_cb) {
 };
 
 var startStreamingInSRT = function (room, url, ok_cb, err_cb) {
-    var latency = parseInt($('#srtlatency').val());
+    var latency = parseInt($('#srtlatency').val()) || 0;
     var mode = $('#srtmode').val();
     var options = {
         url: url,
@@ -507,7 +507,7 @@ var createToken = function (room, user, role, ok_cb, err_cb) {
 function getRestfulParmas() {
     let roomId = $('#roomlist').val() || defaultRoomId,
         participantId = $('#participantlist').val(),
-        forwardStreamId = $('#forwardstreamlist').val(),
+        forwardStreamId = $('#videofromlist').val(),
         view = $('#viewlist').val(),
         trackKind = $('#resttrackkind').val(),
         mixedStreamId = $('#mixstreamlist').val(),
