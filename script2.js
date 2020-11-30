@@ -523,6 +523,10 @@ function getRestfulParmas() {
         streamingOutId = $('#streamingoutid').val(),
         algorithm = $('#algorithm').val(),
         analyticsId = $('#analyticsid').val();
+        srtInUrl_1 = $('#srtIn-1').val();
+        srtInUrl_2 = $('#srtIn-2').val();
+        srtInUrl_3 = $('#srtIn-3').val();
+        srtInUrl_4 = $('#srtIn-4').val();
     sipcalld = $('#sipcallslist').val();
     peerURI = $('#peerURI').val();
     return {
@@ -546,6 +550,10 @@ function getRestfulParmas() {
         container,
         sipcalld,
         peerURI,
+        srtInUrl_1,
+        srtInUrl_2,
+        srtInUrl_3,
+        srtInUrl_4,
     }
 }
 ////room action
@@ -995,13 +1003,47 @@ function restStopStreamingIn() {
 function restStartStreamingInSRT() {
     let {
         roomId,
-        rtspUrl
+        srtInUrl_1,
+        srtInUrl_2,
+        srtInUrl_3,
+        srtInUrl_4,
     } = getRestfulParmas();
-    startStreamingInSRT(roomId, rtspUrl, (resp) => {
-        console.log('start rtsp in success: ', resp);
-    }, err => {
-        console.log('start rtsp in failed: ', err);
-    })
+
+    if (srtInUrl_1) {
+        console.log("url", srtInUrl_1);
+        startStreamingInSRT(roomId, srtInUrl_1, (resp) => {
+            console.log('start streaming in success: ', resp);
+        }, err => {
+            console.log('start streaming in failed: ', err);
+        })
+    }
+
+    if (srtInUrl_2) {
+        console.log(srtInUrl_2);
+        startStreamingInSRT(roomId, srtInUrl_2, (resp) => {
+            console.log('start streaming in success: ', resp);
+        }, err => {
+            console.log('start streaming in failed: ', err);
+        })
+    }
+
+    if (srtInUrl_3) {
+        console.log(srtInUrl_3);
+        startStreamingInSRT(roomId, srtInUrl_3, (resp) => {
+            console.log('start streaming in success: ', resp);
+        }, err => {
+            console.log('start streaming in failed: ', err);
+        })
+    }
+
+    if (srtInUrl_4) {
+        console.log(srtInUrl_4);
+        startStreamingInSRT(roomId, srtInUrl_4, (resp) => {
+            console.log('start streaming in success: ', resp);
+        }, err => {
+            console.log('start streaming in failed: ', err);
+        })
+    }
 }
 
 function restStopStreamingInSRT() {
