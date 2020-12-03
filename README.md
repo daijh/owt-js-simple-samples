@@ -18,6 +18,7 @@ audio = {
     stereo: true,
   }
 ```
+
 ### Subscribe sample
 - Select "remote stream" as forward.<br>
 Postfix "-common" id is mixed stream.<br>
@@ -27,7 +28,16 @@ Non postfix "-common" id is forward stream.
 - Leave all other as default.
 - Press "subscibe"
 
+### Multiple SRT streaming inputs
+- Start multiple SRT in **Listener** mode
+- Fill multiple SRT streaming input URLs
+  - url-1
+  - url-2
+  - url-3
+  - url-4
+- Start multiple SRT streaming inputs simultaneously in **Caller** mode
+
 ## Links
-- [Streaming out setup guide](https://github.com/daijh/owt-doc/blob/master/streaming_out_setup_guide.md)  
-- [SRT setup guide](https://github.com/daijh/owt-doc/blob/master/owt_srt_setup_guide.md)  
-- [Configure publish audio bitrate](https://github.com/daijh/owt-doc/blob/master/owt_publish_audio_bitrate.md)  
+- [Streaming out setup guide](https://github.com/daijh/owt-doc/blob/master/streaming_out_setup_guide.md)
+- [SRT setup guide](https://github.com/daijh/owt-doc/blob/master/owt_srt_setup_guide.md)
+- [Configure publish audio bitrate](https://github.com/daijh/owt-doc/blob/master/owt_publish_audio_bitrate.md)
